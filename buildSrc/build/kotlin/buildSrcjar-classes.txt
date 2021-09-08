@@ -1,0 +1,1 @@
+/Users/wangzhiyi/StudyProject/AndroidComponent/buildSrc/build/classes/kotlin/main/BuildConfig.class:/Users/wangzhiyi/StudyProject/AndroidComponent/buildSrc/build/classes/kotlin/main/LibVersions.class:/Users/wangzhiyi/StudyProject/AndroidComponent/buildSrc/build/classes/kotlin/main/Libs.class

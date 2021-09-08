@@ -1,0 +1,16 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+    }
+}
+rootProject.name = "AndroidComponent"
+include ':app'
+include ':commonLib'
+include ':module_home'
+include ':module_mine'
+include ':module_main'
+include ':commonLib:titlebar'
+include ':mediator'
