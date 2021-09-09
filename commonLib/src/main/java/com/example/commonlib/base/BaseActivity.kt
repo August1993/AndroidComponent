@@ -19,11 +19,9 @@ import com.wuhenzhizao.titlebar.widget.CommonTitleBar
  *     desc   :BaseActivity
  * </pre>
  */
-abstract class BaseActivity<V : ViewBinding, VM : BaseViewModel<BaseModel>> : AppCompatActivity() {
+abstract class BaseActivity<V : ViewBinding> : AppCompatActivity() {
 
     var binding: V? = null
-
-    var vm: VM? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
