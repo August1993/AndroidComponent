@@ -20,7 +20,7 @@ import com.wuhenzhizao.titlebar.widget.CommonTitleBar
  * </pre>
  */
 abstract class BaseActivity<V : ViewBinding> : AppCompatActivity() {
-//11
+//12
     var binding: V? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
