@@ -1,11 +1,21 @@
 package com.example.home
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import android.widget.Toast
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.example.commonlib.base.BaseActivity
+import com.example.commonlib.base.NoViewModel
+import com.example.home.databinding.HomeActivityMainBinding
+import com.example.mediator.router.HomeRouter
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+@Route(path = HomeRouter.PAGE_MAIN)
+class MainActivity : BaseActivity<HomeActivityMainBinding,NoViewModel>() {
+    override fun getLayoutId(): Int {
+      return R.layout.home_activity_main
     }
+
+    override fun initView() {
+            Toast.makeText(this,"hhh",Toast.LENGTH_SHORT).show()
+    }
+
 }

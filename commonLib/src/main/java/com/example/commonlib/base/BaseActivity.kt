@@ -1,7 +1,6 @@
 package com.example.commonlib.base
 
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
 import android.view.ViewStub
 import androidx.appcompat.app.AppCompatActivity
@@ -19,20 +18,21 @@ import com.wuhenzhizao.titlebar.widget.CommonTitleBar
  *     desc   :BaseActivity
  * </pre>
  */
-abstract class BaseActivity<V : ViewBinding> : AppCompatActivity() {
-//12
-    var binding: V? = null
+abstract class BaseActivity<V : ViewBinding, VM : NoViewModel> : AppCompatActivity() {
+
+    lateinit var binding: V
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.root_layout)
         initContentView()
         ARouter.getInstance().inject(this)
+        initView()
     }
 
     abstract fun getLayoutId(): Int
 
-    abstract fun enableSimpleTitle(): Boolean
+    open fun enableSimpleTitle(): Boolean = false
 
     abstract fun initView()
 
@@ -119,10 +119,10 @@ abstract class BaseActivity<V : ViewBinding> : AppCompatActivity() {
                 }
             }
         }
-        val content_view_stub = findViewById<ViewStub>(R.id.content_layout)
-        content_view_stub.layoutResource = getLayoutId()
-        val inflate = content_view_stub.inflate()
-        binding = DataBindingUtil.bind(inflate)
+        val contentViewStub = findViewById<ViewStub>(R.id.content_layout)
+        contentViewStub.layoutResource = getLayoutId()
+        val inflate = contentViewStub.inflate()
+        binding = DataBindingUtil.bind(inflate)!!
     }
 
 }

@@ -16,6 +16,10 @@ private object LibVersions {
     const val materialDesignVersion = "1.3.0"
     const val constraintlayout_version = "2.0.4"
     const val ARoute_version = "1.5.1"
+    const val retrofit_version = "2.9.0"
+    const val okhttp_version = "4.9.0"
+    const val glide_version = "4.11.0"
+
 
 }
 
@@ -42,4 +46,17 @@ object Libs {
         "androidx.lifecycle:lifecycle-livedata-ktx:${LibVersions.ktx_liveData}"
     const val ktx_lifeCycle =
         "androidx.lifecycle:lifecycle-runtime-ktx:${LibVersions.ktx_lifeCycle}"
+
+    const val retrofit = "com.squareup.retrofit2:retrofit:${LibVersions.retrofit_version}"
+
+    const val scalars = "com.squareup.retrofit2:converter-scalars:${LibVersions.retrofit_version}"
+    const val gson_converter = "com.squareup.retrofit2:converter-gson:${LibVersions.retrofit_version}"
+
+    const val okhttp = "com.squareup.okhttp3:okhttp:${LibVersions.okhttp_version}"
+
+    const val glide = "com.github.bumptech.glide:glide:${LibVersions.glide_version}"
+
+    const val glide_compiler = "com.github.bumptech.glide:compiler:4.1.0"
+
+    const val PersistentCookieJar = "com.github.franmontiel:PersistentCookieJar:v1.0.1"
 }

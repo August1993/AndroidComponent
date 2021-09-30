@@ -32,8 +32,12 @@ android {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
-    }
 
+        resourcePrefix "home_"
+    }
+    buildFeatures {
+        dataBinding true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -52,6 +56,7 @@ android {
 dependencies {
 
     implementation project(path: ':commonLib')
+    implementation project(path: ':mediator')
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

@@ -13,7 +13,8 @@ import kotlinx.coroutines.launch
  *     desc   :
  * </pre>
  */
-class BaseViewModel<M : BaseModel> : ViewModel() {
+abstract class BaseViewModel<M : BaseModel> : ViewModel() {
+    var model: M? = null
 
     val emptyLiveDate = MutableLiveData<Any>()
 

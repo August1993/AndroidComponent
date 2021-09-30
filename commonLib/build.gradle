@@ -20,6 +20,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+        multiDexEnabled true
     }
 
     buildFeatures {
@@ -50,10 +51,19 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    api 'com.android.support:multidex:1.0.1'
+    implementation 'com.github.Vincent7Wong:EasyNavigation:2.0.5'
     api Libs.arouter
     kapt Libs.kapt_arouter
 
     api Libs.ktx_videModel
     api Libs.ktx_liveData
     api Libs.ktx_lifeCycle
+    api Libs.retrofit
+    api Libs.scalars
+    api Libs.gson_converter
+    api Libs.okhttp
+    api Libs.glide
+    api Libs.glide_compiler
+//    api Libs.PersistentCookieJar
 }
