@@ -15,6 +15,6 @@ class ApiExceptionTest : TestCase(){
 
     @Test
     fun testApi(){
-        ApiException(12,"网络请求错误").printStackTrace()
+
     }
 }

@@ -11,6 +11,12 @@
         <entry key="commonLib/titlebar/src/main/res/drawable/comm_titlebar_bottom_shadow.xml" value="0.14479166666666668" />
         <entry key="commonLib/titlebar/src/main/res/layout/activity_main.xml" value="0.11271529888551166" />
         <entry key="commonLib/titlebar/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="module_home/src/main/res/layout/activity_main.xml" value="0.19166666666666668" />
+        <entry key="module_home/src/main/res/layout/home_activity_main.xml" value="0.11458333333333333" />
+        <entry key="module_main/src/main/res/layout/activity_home_main.xml" value="0.11458333333333333" />
+        <entry key="module_main/src/main/res/layout/activity_main.xml" value="0.19166666666666668" />
+        <entry key="module_mine/src/main/res/layout/activity_main.xml" value="0.19166666666666668" />
+        <entry key="module_mine/src/main/res/layout/activity_mine.xml" value="0.19166666666666668" />
       </map>
     </option>
   </component>

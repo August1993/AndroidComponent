@@ -5,11 +5,12 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.commonlib.base.BaseActivity
 import com.example.commonlib.base.NoViewModel
 import com.example.home.databinding.HomeActivityMainBinding
+import com.example.home.viewmodel.MainViewModel
 import com.example.mediator.router.HomeRouter
 
 
 @Route(path = HomeRouter.PAGE_MAIN)
-class MainActivity : BaseActivity<HomeActivityMainBinding,NoViewModel>() {
+class MainActivity : BaseActivity<HomeActivityMainBinding,MainViewModel>() {
     override fun getLayoutId(): Int {
       return R.layout.home_activity_main
     }

@@ -10,6 +10,6 @@ import com.zs.zs_jetpack.http.RetrofitFactory
  *     desc   :
  * </pre>
  */
-class NoModel() : BaseModel() {
+class NoModel : BaseModel() {
 
 }

@@ -13,7 +13,7 @@ import com.example.mediator.router.MineRouter
 import com.wuhenzhizao.titlebar.widget.CommonTitleBar
 
 
-class MainActivity : BaseActivity<ActivityMainBinding, NoViewModel>() {
+class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun getLayoutId(): Int = R.layout.activity_main
 
@@ -70,7 +70,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, NoViewModel>() {
 
     override fun initView() {
 
-
         binding.homeMain.setOnClickListener {
             Toast.makeText(
                 this@MainActivity,
@@ -78,8 +77,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, NoViewModel>() {
                 Toast.LENGTH_SHORT
             ).show()
             ARouter.getInstance().build(HomeRouter.PAGE_MAIN).navigation()
-
-
         }
 
         binding.mainMain.setOnClickListener {

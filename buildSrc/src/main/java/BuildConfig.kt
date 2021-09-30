@@ -39,7 +39,7 @@ object Libs {
 
     const val kapt_arouter = "com.alibaba:arouter-compiler:${LibVersions.ARoute_version}"
 
-    const val ktx_videModel =
+    const val ktx_viewModel =
         "androidx.lifecycle:lifecycle-viewmodel-ktx:${LibVersions.ktx_viewmodel}"
 
     const val ktx_liveData =

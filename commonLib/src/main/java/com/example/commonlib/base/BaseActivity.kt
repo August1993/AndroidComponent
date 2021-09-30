@@ -1,14 +1,19 @@
 package com.example.commonlib.base
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewStub
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.commonlib.R
 import com.wuhenzhizao.titlebar.widget.CommonTitleBar
+import java.lang.reflect.ParameterizedType
 
 /**
  * <pre>
@@ -18,15 +23,18 @@ import com.wuhenzhizao.titlebar.widget.CommonTitleBar
  *     desc   :BaseActivity
  * </pre>
  */
-abstract class BaseActivity<V : ViewBinding, VM : NoViewModel> : AppCompatActivity() {
+abstract class BaseActivity<V : ViewBinding, VM : ViewModel> : AppCompatActivity() {
 
     lateinit var binding: V
+
+    var mViewModel: VM? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.root_layout)
         initContentView()
         ARouter.getInstance().inject(this)
+        initViewModel()
         initView()
     }
 
@@ -123,6 +131,32 @@ abstract class BaseActivity<V : ViewBinding, VM : NoViewModel> : AppCompatActivi
         contentViewStub.layoutResource = getLayoutId()
         val inflate = contentViewStub.inflate()
         binding = DataBindingUtil.bind(inflate)!!
+    }
+
+    fun initViewModel() {
+        Log.d("initViewModel", "initViewModel start")
+        mViewModel = initCustomViewModel()
+        if (mViewModel == null) {
+            val type = javaClass.genericSuperclass
+            if (type is ParameterizedType) {
+                var modelClass: Class<VM>? = null
+                modelClass = type.actualTypeArguments[1] as Class<VM>
+                mViewModel = createViewModel(this, modelClass!!)
+            } else {
+                var modelClass = NoViewModel::class.java
+                mViewModel = createViewModel(this, modelClass!!) as VM
+            }
+
+            Log.d("initViewModel", "initViewModel $mViewModel")
+        }
+    }
+
+    fun <T : ViewModel> createViewModel(fragmentActivity: FragmentActivity, clazz: Class<T>): T {
+        return ViewModelProvider(fragmentActivity).get(clazz)
+    }
+
+    fun initCustomViewModel(): VM? {
+        return null
     }
 
 }
