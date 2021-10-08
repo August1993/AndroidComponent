@@ -47,5 +47,6 @@ dependencies {
         implementation project(path: ':module_home')
         implementation project(path: ':module_mine')
     }
-
+    api Libs.arouter
+    kapt Libs.kapt_arouter
 }

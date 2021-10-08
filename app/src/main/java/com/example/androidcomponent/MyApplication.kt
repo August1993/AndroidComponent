@@ -2,6 +2,7 @@ package com.example.androidcomponent
 
 import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
+import com.example.commonlib.base.BaseApplication
 
 /**
  * <pre>
@@ -11,7 +12,7 @@ import com.alibaba.android.arouter.launcher.ARouter
  *     desc   :
  * </pre>
  */
-class MyApplication : Application() {
+class MyApplication : BaseApplication() {
     override fun onCreate() {
         super.onCreate()
         ARouter.openLog()

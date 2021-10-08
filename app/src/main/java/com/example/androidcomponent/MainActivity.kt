@@ -23,25 +23,15 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         return "superTitle"
     }
 
-    override fun bindLeftType(): Int {
-        return CommonTitleBar.TYPE_LEFT_TEXTVIEW
-    }
+    override fun bindLeftType(): Int = CommonTitleBar.TYPE_LEFT_TEXTVIEW
 
-    override fun bindLeftText(): String {
-        return "取消"
-    }
+    override fun bindLeftText(): String = "取消"
 
-    override fun bindLeftIcon(): Int {
-        return R.drawable.comm_titlebar_search_normal
-    }
+    override fun bindLeftIcon(): Int = R.drawable.comm_titlebar_search_normal
 
-    override fun bindRightType(): Int {
-        return CommonTitleBar.TYPE_RIGHT_TEXTVIEW
-    }
+    override fun bindRightType(): Int = CommonTitleBar.TYPE_RIGHT_TEXTVIEW
 
-    override fun bindRightIcon(): Int {
-        return R.drawable.comm_titlebar_voice
-    }
+    override fun bindRightIcon(): Int = R.drawable.comm_titlebar_voice
 
     override fun bindRightText(): String {
         return "确定"

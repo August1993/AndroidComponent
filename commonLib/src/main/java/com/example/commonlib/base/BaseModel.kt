@@ -1,9 +1,13 @@
 package com.example.commonlib.base
 
 import com.example.commonlib.http.model.DealException
+import com.example.commonlib.http.model.HttpResult
 import com.example.commonlib.http.model.NetResult
+import com.example.commonlib.http.model.ResultException
 import com.zs.zs_jetpack.http.RetrofitFactory
 import com.zs.zs_jetpack.http.RetrofitManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.coroutineScope
 
 /**
  * <pre>
@@ -27,6 +31,26 @@ open class BaseModel {
         }
     }
 
+    suspend fun <T : Any> handleResponse(
+        response: HttpResult<T>,
+        successBlock: (suspend CoroutineScope.() -> Unit)? = null,
+        errorBlock: (suspend CoroutineScope.() -> Unit)? = null
+    ): NetResult<T> {
+        return coroutineScope {
+            if (response.errorCode == -1) {
+                errorBlock?.let { it() }
+                NetResult.Error(
+                    ResultException(
+                        response.errorCode.toString(),
+                        response.errorMsg
+                    )
+                )
+            } else {
+                successBlock?.let { it() }
+                NetResult.Success(response.data)
+            }
+        }
+    }
 
     fun <T> buildService(service: Class<T>): T {
         return RetrofitFactory.factory().create(service)

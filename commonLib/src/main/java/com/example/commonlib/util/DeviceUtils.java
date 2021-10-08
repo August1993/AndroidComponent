@@ -14,6 +14,8 @@ import android.os.Build;
 import android.provider.Settings;
 import android.text.TextUtils;
 
+import com.example.commonlib.base.BaseApplication;
+
 import java.lang.reflect.Method;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
@@ -30,7 +32,7 @@ import java.util.UUID;
 public final class DeviceUtils {
 
     public static Context getContext() {
-        return null;
+        return BaseApplication.getInstance();
     }
 
     /**

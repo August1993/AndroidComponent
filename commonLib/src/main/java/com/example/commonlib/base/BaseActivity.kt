@@ -35,6 +35,7 @@ abstract class BaseActivity<V : ViewBinding, VM : ViewModel> : AppCompatActivity
         initContentView()
         ARouter.getInstance().inject(this)
         initViewModel()
+        initListener()
         initView()
     }
 
@@ -43,6 +44,10 @@ abstract class BaseActivity<V : ViewBinding, VM : ViewModel> : AppCompatActivity
     open fun enableSimpleTitle(): Boolean = false
 
     abstract fun initView()
+
+    open fun initListener(){
+
+    }
 
     open fun bindCenterTitle(): String {
         return ""

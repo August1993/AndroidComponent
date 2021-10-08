@@ -21,7 +21,7 @@ import java.util.logging.Level
  */
 object RetrofitFactory {
     private const val DEFAULT_TIMEOUT = 10000
-    private const val BASE_URL = ""
+    private const val BASE_URL = "https://www.wanandroid.com"
 
     //缓存100Mb
     private val okHttpClientBuilder: OkHttpClient.Builder
