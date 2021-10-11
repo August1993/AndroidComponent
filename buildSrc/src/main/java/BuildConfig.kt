@@ -19,6 +19,7 @@ private object LibVersions {
     const val retrofit_version = "2.9.0"
     const val okhttp_version = "4.9.0"
     const val glide_version = "4.11.0"
+    const val paging_version = "3.0.1"
 
 
 }
@@ -44,13 +45,18 @@ object Libs {
 
     const val ktx_liveData =
         "androidx.lifecycle:lifecycle-livedata-ktx:${LibVersions.ktx_liveData}"
+
     const val ktx_lifeCycle =
         "androidx.lifecycle:lifecycle-runtime-ktx:${LibVersions.ktx_lifeCycle}"
+
+    const val paging = "androidx.paging:paging-runtime:${LibVersions.paging_version}"
 
     const val retrofit = "com.squareup.retrofit2:retrofit:${LibVersions.retrofit_version}"
 
     const val scalars = "com.squareup.retrofit2:converter-scalars:${LibVersions.retrofit_version}"
-    const val gson_converter = "com.squareup.retrofit2:converter-gson:${LibVersions.retrofit_version}"
+
+    const val gson_converter =
+        "com.squareup.retrofit2:converter-gson:${LibVersions.retrofit_version}"
 
     const val okhttp = "com.squareup.okhttp3:okhttp:${LibVersions.okhttp_version}"
 

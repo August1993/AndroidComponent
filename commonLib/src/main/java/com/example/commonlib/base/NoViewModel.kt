@@ -1,5 +1,7 @@
 package com.example.commonlib.base
 
+import android.app.Application
+
 /**
  * <pre>
  *     author : wangzhiyi
@@ -8,5 +10,5 @@ package com.example.commonlib.base
  *     desc   :
  * </pre>
  */
-class NoViewModel() : BaseViewModel<NoModel>() {
+class NoViewModel(application: Application) : BaseViewModel<NoModel>(application,NoModel()) {
 }

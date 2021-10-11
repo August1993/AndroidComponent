@@ -51,11 +51,13 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     api 'com.android.support:multidex:1.0.1'
     implementation 'com.github.Vincent7Wong:EasyNavigation:2.0.5'
+    api ('androidx.work:work-runtime-ktx:2.6.0'){ exclude group:'com.google.guava'}
     api Libs.core_ktx
     api Libs.arouter
     kapt Libs.kapt_arouter
     api Libs.androidX_appcompat
     api Libs.material
+    api Libs.paging
     api Libs.ktx_viewModel
     api Libs.ktx_liveData
     api Libs.ktx_lifeCycle

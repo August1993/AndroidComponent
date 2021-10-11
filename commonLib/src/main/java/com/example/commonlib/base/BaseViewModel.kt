@@ -1,9 +1,8 @@
 package com.example.commonlib.base
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
 
 /**
  * <pre>
@@ -13,8 +12,13 @@ import kotlinx.coroutines.launch
  *     desc   :
  * </pre>
  */
-abstract class BaseViewModel<M : BaseModel> : ViewModel() {
-    var model: M? = null
+abstract class BaseViewModel<M : BaseModel> : AndroidViewModel {
+
+    constructor(application: Application, model: BaseModel) : super(application) {
+        mModel = model as M
+    }
+
+    var mModel: M? = null
 
     val emptyLiveDate = MutableLiveData<Any>()
 

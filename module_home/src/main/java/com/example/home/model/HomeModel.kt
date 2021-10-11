@@ -3,6 +3,7 @@ package com.example.home.model
 import com.example.commonlib.base.BaseModel
 import com.example.commonlib.http.model.NetResult
 import com.example.home.model.bean.Banner
+import com.example.home.model.bean.ProjectBean
 import com.example.home.model.service.RequestCenter
 
 /**
@@ -18,6 +19,13 @@ class HomeModel : BaseModel() {
         return callRequest(call = { requestBanner() })
     }
 
+    suspend fun getProjectList(pageNum: Int): NetResult<ProjectBean> {
+        return callRequest(call = { requestProjectList(pageNum) })
+    }
+
     private suspend fun requestBanner() =
         handleResponse(buildService(RequestCenter::class.java).getBanner())
+
+    private suspend fun requestProjectList(pageNum: Int) =
+        handleResponse(buildService(RequestCenter::class.java).getProjectList(pageNum))
 }

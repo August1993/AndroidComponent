@@ -20,7 +20,7 @@ import kotlinx.coroutines.coroutineScope
 open class BaseModel {
 
     suspend fun <T : Any> callRequest(
-        call: suspend () -> NetResult<T>
+            call: suspend () -> NetResult<T>
     ): NetResult<T> {
         return try {
             call()
@@ -32,18 +32,18 @@ open class BaseModel {
     }
 
     suspend fun <T : Any> handleResponse(
-        response: HttpResult<T>,
-        successBlock: (suspend CoroutineScope.() -> Unit)? = null,
-        errorBlock: (suspend CoroutineScope.() -> Unit)? = null
+            response: HttpResult<T>,
+            successBlock: (suspend CoroutineScope.() -> Unit)? = null,
+            errorBlock: (suspend CoroutineScope.() -> Unit)? = null
     ): NetResult<T> {
         return coroutineScope {
             if (response.errorCode == -1) {
                 errorBlock?.let { it() }
                 NetResult.Error(
-                    ResultException(
-                        response.errorCode.toString(),
-                        response.errorMsg
-                    )
+                        ResultException(
+                                response.errorCode.toString(),
+                                response.errorMsg
+                        )
                 )
             } else {
                 successBlock?.let { it() }

@@ -1,17 +1,22 @@
 package com.example.home.viewmodel
 
-import android.widget.Toast
-import androidx.lifecycle.LiveData
+import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.example.commonlib.base.BaseViewModel
-import com.example.commonlib.base.NoModel
 import com.example.commonlib.http.model.NetResult
 import com.example.commonlib.util.LogUtils
 import com.example.home.model.HomeModel
 import com.example.home.model.bean.Banner
+import com.example.home.model.bean.Data
+import com.example.home.model.repo.ProjectPagingSource
+import com.example.home.model.service.RequestCenter
+import com.zs.zs_jetpack.http.RetrofitFactory
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 /**
@@ -22,26 +27,41 @@ import kotlinx.coroutines.withContext
  *     desc   :
  * </pre>
  */
-class HomeViewModel : BaseViewModel<HomeModel>() {
+class HomeViewModel(application: Application) : BaseViewModel<HomeModel>(application, HomeModel()) {
 
     val mBannerLiveData by lazy {
         MutableLiveData<List<Banner>>()
     }
 
-    val m by lazy {
-        HomeModel()
-    }
-
     fun getBanner() {
         viewModelScope.launch {
-            val banner = m.getBanner()
+            val banner = mModel?.getBanner()
             if (banner is NetResult.Success) {
-                LogUtils.d("getBanner","getBanner is $banner")
-                mBannerLiveData.value=banner.data
+                LogUtils.d("getBanner", "getBanner is $banner")
+                mBannerLiveData.value = banner.data
             } else if (banner is NetResult.Error) {
 
             }
         }
+    }
 
+    fun getProjectList() {
+        viewModelScope.launch {
+            val projectList = mModel?.getProjectList(1)
+            if (projectList is NetResult.Success) {
+                LogUtils.d("getProjectList", "getProjectList is $projectList")
+            }
+        }
+    }
+
+    fun getPagingData(): Flow<PagingData<Data>> {
+        val requestCenter = buildService(RequestCenter::class.java)
+        return Pager(config = PagingConfig(10),
+            pagingSourceFactory = { ProjectPagingSource(requestCenter) })
+            .flow
+    }
+
+    fun <T> buildService(service: Class<T>): T {
+        return RetrofitFactory.factory().create(service)
     }
 }
