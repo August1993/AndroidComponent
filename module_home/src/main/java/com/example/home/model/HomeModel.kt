@@ -15,6 +15,7 @@ import com.example.home.model.service.RequestCenter
  * </pre>
  */
 class HomeModel : BaseModel() {
+
     suspend fun getBanner(): NetResult<List<Banner>> {
         return callRequest(call = { requestBanner() })
     }

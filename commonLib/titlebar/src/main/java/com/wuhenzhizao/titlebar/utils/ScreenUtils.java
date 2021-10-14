@@ -18,6 +18,12 @@ public class ScreenUtils {
         }
         return dp * density(context);
     }
+    public static int dp2Px(Context context, int dp) {
+        if (context == null) {
+            return -1;
+        }
+        return (int) (dp * density(context));
+    }
 
     public static float px2Dp(Context context, float px) {
         if (context == null) {

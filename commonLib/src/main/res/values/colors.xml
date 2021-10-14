@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_theme">#07C160</color>
+    <color name="color_white">#ffffff</color>
+    <color name="color_yellow">#FFEB3B</color>
+    <color name="color_message_dialog_divide_line">#EDEDED</color>
+</resources>

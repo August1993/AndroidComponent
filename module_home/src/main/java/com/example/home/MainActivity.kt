@@ -1,11 +1,13 @@
 package com.example.home
 
+import android.graphics.Color
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.commonlib.base.BaseActivity
+import com.example.commonlib.dialog.CommonMessageDialog
 import com.example.home.databinding.HomeActivityMainBinding
 import com.example.home.model.bean.Data
 import com.example.home.ui.adapter.ProjectAdapter
@@ -39,6 +41,25 @@ class MainActivity : BaseActivity<HomeActivityMainBinding, HomeViewModel>() {
         adapter.addLoadStateListener {
 
         }
+
+        CommonMessageDialog.Builder()
+            .setTitleText("更新提示")
+            .setMessageText("有新的版本,请立即更新")
+            .setNegativeText("拒绝")
+            .setPositiveText("同意")
+            .setNegativeTextColor(Color.RED)
+            .setPositiveTextColor(Color.GREEN)
+            .setTitleColor(Color.parseColor("#0094ff"))
+            .setMessageColor(com.example.commonlib.R.color.color_yellow)
+            .setNegativeClickListener {
+                Toast.makeText(MainActivity@ this, "取消", Toast.LENGTH_SHORT).show()
+            }
+            .setPositiveClickListener {
+                Toast.makeText(MainActivity@ this, "确认", Toast.LENGTH_SHORT).show()
+
+            }
+            .setCancelable(false)
+            .show(supportFragmentManager, "11")
     }
 
     override fun initListener() {
