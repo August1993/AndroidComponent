@@ -5,12 +5,12 @@ import com.example.commonlib.base.BaseActivity
 import com.example.commonlib.base.NoViewModel
 import com.example.mediator.router.MainRouter
 import com.example.module.R
-import com.example.module.databinding.ActivityMainBinding
+import com.example.module.databinding.MainActivityMainBinding
 
 
 @Route(path = MainRouter.PAGE_MAIN)
-class MainActivity : BaseActivity<ActivityMainBinding, NoViewModel>() {
-    override fun getLayoutId(): Int = R.layout.activity_main
+class MainActivity : BaseActivity<MainActivityMainBinding, NoViewModel>() {
+    override fun getLayoutId(): Int = R.layout.main_activity_main
 
     override fun initView() {
 

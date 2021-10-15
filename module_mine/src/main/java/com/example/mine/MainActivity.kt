@@ -9,7 +9,7 @@ import com.example.mediator.router.HomeRouter
 import com.example.mediator.router.MineRouter
 import com.example.mine.databinding.ActivityMainBinding
 
-@Route(path = MineRouter.PAGE_MAIN)
+
 class MainActivity : BaseActivity<ActivityMainBinding,NoViewModel>() {
     override fun getLayoutId(): Int {
          return R.layout.activity_main

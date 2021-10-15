@@ -46,7 +46,8 @@ android {
 }
 
 dependencies {
-
     implementation project(path: ':commonLib')
     implementation project(path: ':mediator')
+    api Libs.arouter
+    kapt Libs.kapt_arouter
 }

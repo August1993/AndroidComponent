@@ -61,38 +61,22 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override fun initView() {
 
         binding.homeMain.setOnClickListener {
-            Toast.makeText(
-                this@MainActivity,
-                "1",
-                Toast.LENGTH_SHORT
-            ).show()
+
             ARouter.getInstance().build(HomeRouter.PAGE_MAIN).navigation()
         }
 
         binding.mainMain.setOnClickListener {
-            Toast.makeText(
-                this@MainActivity,
-                "2",
-                Toast.LENGTH_SHORT
-            ).show()
+
             ARouter.getInstance().build(MainRouter.PAGE_MAIN).navigation()
+
         }
 
         binding.mineMain.setOnClickListener {
-            Toast.makeText(
-                this@MainActivity,
-                "3",
-                Toast.LENGTH_SHORT
-            ).show()
             ARouter.getInstance().build(MineRouter.PAGE_MAIN).navigation()
         }
 
         binding.test.setOnClickListener {
-            Toast.makeText(
-                this@MainActivity,
-                "4",
-                Toast.LENGTH_SHORT
-            ).show()
+
             ARouter.getInstance().build("/second/page").navigation()
         }
 

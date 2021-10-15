@@ -15,6 +15,7 @@ import com.example.home.model.bean.Data
 import com.example.home.ui.adapter.ProjectAdapter
 import com.example.home.viewmodel.HomeViewModel
 import com.example.mediator.router.HomeRouter
+import com.example.mediator.router.MainRouter
 import com.trello.lifecycle4.android.lifecycle.RxLifecycleAndroidLifecycle
 import com.trello.rxlifecycle4.RxLifecycle
 import io.reactivex.rxjava3.core.Single

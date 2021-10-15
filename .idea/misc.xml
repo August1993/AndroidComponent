@@ -20,7 +20,8 @@
         <entry key="module_main/src/main/res/layout/activity_home_main.xml" value="0.11458333333333333" />
         <entry key="module_main/src/main/res/layout/activity_main.xml" value="0.19166666666666668" />
         <entry key="module_mine/src/main/res/layout/activity_main.xml" value="0.19166666666666668" />
-        <entry key="module_mine/src/main/res/layout/activity_mine.xml" value="0.19166666666666668" />
+        <entry key="module_mine/src/main/res/layout/activity_mine.xml" value="0.1" />
+        <entry key="module_mine/src/main/res/layout/mine_activity_mine.xml" value="0.1" />
       </map>
     </option>
   </component>
