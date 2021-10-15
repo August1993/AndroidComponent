@@ -16,9 +16,9 @@
 
             <ViewStub
                 android:id="@+id/simple_title"
-                android:layout="@layout/simple_title_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout="@layout/simple_title_layout" />
 
             <ViewStub
                 android:id="@+id/content_layout"
@@ -26,14 +26,18 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
-        <ViewStub
+        <include
             android:id="@+id/loading_layout"
+            layout="@layout/layout_loading_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:visibility="gone" />
 
-        <ViewStub
+        <include
             android:id="@+id/error_layout"
+            layout="@layout/layout_error_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:visibility="gone"/>
     </FrameLayout>
 </layout>

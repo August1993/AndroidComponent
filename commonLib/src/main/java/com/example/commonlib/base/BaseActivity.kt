@@ -4,15 +4,20 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewStub
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.commonlib.R
+import com.example.commonlib.http.model.ResultException
+import com.example.commonlib.util.LogUtils
 import com.wuhenzhizao.titlebar.widget.CommonTitleBar
 import java.lang.reflect.ParameterizedType
 
@@ -30,12 +35,14 @@ abstract class BaseActivity<V : ViewBinding, VM : BaseViewModel<*>> : AppCompatA
 
     var mViewModel: VM? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.root_layout)
         initContentView()
         ARouter.getInstance().inject(this)
         initViewModel()
+        registerUiChangeObservable()
         initListener()
         initView()
     }
@@ -155,6 +162,67 @@ abstract class BaseActivity<V : ViewBinding, VM : BaseViewModel<*>> : AppCompatA
         lifecycle.addObserver(mViewModel!!)
     }
 
+
+    private fun registerUiChangeObservable() {
+        mViewModel?.uiChangeLiveData?.showLoadingEvent?.observe(this, {
+            LogUtils.d("loading", "   hide loading 1111111 ")
+            showLoadingView(it!!)
+        })
+
+        mViewModel?.uiChangeLiveData?.showErrorEvent?.observe(this, {
+            LogUtils.d("loading", "   hide loading 1111111 ${it?.exception?.msg}")
+
+            showErrorView(it?.exception)
+        })
+
+    }
+
+
+    open fun showLoadingView(loading: Boolean) {
+        val loadingView: View? = findViewById(R.id.loading_layout)
+        if (loadingView != null) {
+            loadingView.visibility = if (loading) View.VISIBLE else View.GONE
+        }
+        val errorView: View? = findViewById(R.id.error_layout)
+        if (errorView != null) {
+            errorView.visibility = View.GONE
+        }
+    }
+
+
+    /**
+     * 展示错误页面
+     *
+     * @param throwable 异常
+     */
+    protected open fun showErrorView(throwable: Throwable?) {
+        val loadingView: View? = findViewById<View>(R.id.loading_layout)
+        if (loadingView != null) {
+            loadingView.visibility = View.GONE
+        }
+        val errorView: View? = findViewById(R.id.error_layout)
+        if (errorView != null) {
+            errorView.visibility = View.VISIBLE
+            val errorIv: ImageView = findViewById(R.id.iv_error)
+
+        }
+        val errorTv: TextView = findViewById<TextView>(R.id.tv_error)
+        if (throwable?.message!!.isNotEmpty()) {
+
+            if (throwable is ResultException) {
+                errorTv.text = throwable.message
+            } else {
+                errorTv.text = throwable.message
+            }
+        }
+        val operationTv: TextView? = findViewById(R.id.tv_operation)
+        if (operationTv != null) {
+
+
+        }
+    }
+
+
     private fun <T : ViewModel> createViewModel(
         fragmentActivity: FragmentActivity,
         clazz: Class<T>
@@ -165,5 +233,6 @@ abstract class BaseActivity<V : ViewBinding, VM : BaseViewModel<*>> : AppCompatA
     fun initCustomViewModel(): VM? {
         return null
     }
+
 
 }

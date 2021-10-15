@@ -25,7 +25,7 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         ARouter.getInstance().inject(this);
         setContentView(R.layout.activity_second)
-        findViewById<TextView>(R.id.tv).text = key3
+
     }
 
 }

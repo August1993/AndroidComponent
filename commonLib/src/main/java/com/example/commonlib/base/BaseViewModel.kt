@@ -5,6 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
+import com.example.commonlib.event.event.SingleLiveEvent
+import com.example.commonlib.http.model.NetResult
 
 /**
  * <pre>
@@ -14,7 +16,9 @@ import androidx.lifecycle.MutableLiveData
  *     desc   :
  * </pre>
  */
-abstract class BaseViewModel<M : BaseModel> : AndroidViewModel,IBaseViewModel {
+abstract class BaseViewModel<M : BaseModel> : AndroidViewModel, IBaseViewModel {
+
+    var uiChangeLiveData: UIChangeLiveData? = null
 
     override fun onAny(owner: LifecycleOwner?, event: Lifecycle.Event?) {
 
@@ -54,13 +58,15 @@ abstract class BaseViewModel<M : BaseModel> : AndroidViewModel,IBaseViewModel {
 
     constructor(application: Application, model: BaseModel) : super(application) {
         mModel = model as M
+        uiChangeLiveData = UIChangeLiveData()
     }
 
     var mModel: M? = null
 
-    val emptyLiveDate = MutableLiveData<Any>()
-
-    val loadingLiveData = MutableLiveData<Boolean>()
+    class UIChangeLiveData : SingleLiveEvent<Any>() {
+        val showLoadingEvent by lazy { return@lazy MutableLiveData<Boolean>() }
+        val showErrorEvent by lazy { return@lazy SingleLiveEvent<NetResult.Error>() }
+    }
 
 }
 

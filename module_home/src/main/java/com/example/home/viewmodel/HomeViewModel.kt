@@ -34,22 +34,15 @@ class HomeViewModel(application: Application) : BaseViewModel<HomeModel>(applica
     }
 
     fun getBanner() {
+        uiChangeLiveData?.showLoadingEvent?.value = true
         viewModelScope.launch {
             val banner = mModel?.getBanner()
             if (banner is NetResult.Success) {
                 LogUtils.d("getBanner", "getBanner is $banner")
                 mBannerLiveData.value = banner.data
+                uiChangeLiveData?.showLoadingEvent?.value = false
             } else if (banner is NetResult.Error) {
-
-            }
-        }
-    }
-
-    fun getProjectList() {
-        viewModelScope.launch {
-            val projectList = mModel?.getProjectList(1)
-            if (projectList is NetResult.Success) {
-                LogUtils.d("getProjectList", "getProjectList is $projectList")
+                uiChangeLiveData?.showErrorEvent?.value=banner
             }
         }
     }

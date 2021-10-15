@@ -35,11 +35,11 @@ class CommonMessageDialog : BaseDialog<DialogMessageBinding, NoViewModel>() {
         val dm = DisplayMetrics()
         dialog!!.setCanceledOnTouchOutside(false)
         activity!!.windowManager.defaultDisplay.getMetrics(dm)
-        val params = win!!.attributes
+        val params = win.attributes
         val width: Int = ScreenUtils.getScreenWidth(activity) - ScreenUtils.dp2Px(activity, 45) * 2
         params.width = width
         params.gravity = Gravity.CENTER
-        win!!.attributes = params
+        win.attributes = params
     }
 
     override fun initView() {
@@ -65,11 +65,9 @@ class CommonMessageDialog : BaseDialog<DialogMessageBinding, NoViewModel>() {
             binding?.tvNegative?.setOnClickListener(negativeClickListener)
             binding?.tvPositive?.setOnClickListener(positiveClickListener)
 
-
             isCancelable = isCancel
 
         }
-
 
     }
 
@@ -137,8 +135,8 @@ class CommonMessageDialog : BaseDialog<DialogMessageBinding, NoViewModel>() {
             return this
         }
 
-        fun show(fm: FragmentManager, tag: String) {
-            var dialog = CommonMessageDialog().apply {
+        fun show(fm: FragmentManager, tag: String): DialogFragment {
+            return CommonMessageDialog().apply {
                 var bundle = Bundle().apply {
                     putSerializable("data", builderData)
                 }
