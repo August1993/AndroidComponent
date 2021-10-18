@@ -4,8 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.178125" />
+        <entry key="app/src/main/res/drawable-xhdpi/main_sel_tab_bookshelf.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-xhdpi/main_sel_tab_categories.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/test_fragment_layout.xml" value="0.11515151515151516" />
         <entry key="commonLib/src/main/res/layout/dialog_message.xml" value="0.1" />
         <entry key="commonLib/src/main/res/layout/layout_error_view.xml" value="0.14479166666666668" />
         <entry key="commonLib/src/main/res/layout/layout_loading_view.xml" value="0.14479166666666668" />
@@ -16,12 +19,15 @@
         <entry key="commonLib/titlebar/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="module_home/src/main/res/layout/activity_main.xml" value="0.19166666666666668" />
         <entry key="module_home/src/main/res/layout/home_activity_main.xml" value="0.1" />
+        <entry key="module_home/src/main/res/layout/home_fragment_layout.xml" value="0.1" />
         <entry key="module_home/src/main/res/layout/home_project_item.xml" value="0.1598731884057971" />
         <entry key="module_main/src/main/res/layout/activity_home_main.xml" value="0.11458333333333333" />
         <entry key="module_main/src/main/res/layout/activity_main.xml" value="0.19166666666666668" />
+        <entry key="module_main/src/main/res/layout/main_fragment_layout.xml" value="0.1" />
         <entry key="module_mine/src/main/res/layout/activity_main.xml" value="0.19166666666666668" />
         <entry key="module_mine/src/main/res/layout/activity_mine.xml" value="0.1" />
         <entry key="module_mine/src/main/res/layout/mine_activity_mine.xml" value="0.1" />
+        <entry key="module_mine/src/main/res/layout/mine_fragment_layout.xml" value="0.1" />
       </map>
     </option>
   </component>

@@ -2,13 +2,16 @@ package com.example.commonlib.base
 
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.ViewStub
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -30,22 +33,42 @@ import java.lang.reflect.ParameterizedType
  *     desc   :BaseActivity
  * </pre>
  */
-abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : AppCompatActivity() {
+abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : Fragment() {
 
     lateinit var binding: V
 
     var mViewModel: VM? = null
 
+    var rootView: View? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.root_layout)
-        initContentView()
         ARouter.getInstance().inject(this)
+
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        rootView = inflater.inflate(R.layout.root_layout, container, false)
+
+        return rootView
+
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initContentView()
+
         initViewModel()
         registerUiChangeObservable()
         initListener()
         initView()
     }
+
 
     abstract fun getLayoutId(): Int
 
@@ -100,7 +123,7 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : AppCom
 
     private fun initContentView() {
         if (enableSimpleTitle()) {
-            val viewStub = findViewById<ViewStub>(R.id.simple_title)
+            val viewStub = rootView!!.findViewById<ViewStub>(R.id.simple_title)
             val inflate = viewStub.inflate()
             val commonTitleBar = inflate.findViewById<CommonTitleBar>(R.id.common_title_bar)
             commonTitleBar.centerTextView.text = bindCenterTitle()
@@ -140,7 +163,7 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : AppCom
                 }
             }
         }
-        val contentViewStub = findViewById<ViewStub>(R.id.content_layout)
+        val contentViewStub = rootView!!.findViewById<ViewStub>(R.id.content_layout)
         contentViewStub.layoutResource = getLayoutId()
         val inflate = contentViewStub.inflate()
         binding = DataBindingUtil.bind(inflate)!!
@@ -153,10 +176,10 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : AppCom
             if (type is ParameterizedType) {
                 var modelClass: Class<VM>? = null
                 modelClass = type.actualTypeArguments[1] as Class<VM>
-                mViewModel = createViewModel(this, modelClass)
+                mViewModel = createViewModel(activity!!, modelClass)
             } else {
                 var modelClass = NoViewModel::class.java
-                mViewModel = createViewModel(this, modelClass) as VM
+                mViewModel = createViewModel(activity!!, modelClass) as VM
             }
         }
         lifecycle.addObserver(mViewModel!!)
@@ -164,26 +187,27 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : AppCom
 
 
     private fun registerUiChangeObservable() {
-        mViewModel?.uiChangeLiveData?.showLoadingEvent?.observe(this, {
+        mViewModel?.uiChangeLiveData?.showLoadingEvent?.observe(viewLifecycleOwner, {
             LogUtils.d("loading", "   hide loading 1111111 ")
             showLoadingView(it!!)
         })
 
-        mViewModel?.uiChangeLiveData?.showErrorEvent?.observe(this, {
+        mViewModel?.uiChangeLiveData?.showErrorEvent?.observe(viewLifecycleOwner, {
             LogUtils.d("loading", "   hide loading 1111111 ${it?.exception?.msg}")
-
             showErrorView(it?.exception)
         })
+
+
 
     }
 
 
     open fun showLoadingView(loading: Boolean) {
-        val loadingView: View? = findViewById(R.id.loading_layout)
+        val loadingView: View? = rootView!!.findViewById(R.id.loading_layout)
         if (loadingView != null) {
             loadingView.visibility = if (loading) View.VISIBLE else View.GONE
         }
-        val errorView: View? = findViewById(R.id.error_layout)
+        val errorView: View? = rootView!!.findViewById(R.id.error_layout)
         if (errorView != null) {
             errorView.visibility = View.GONE
         }
@@ -196,30 +220,33 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : AppCom
      * @param throwable 异常
      */
     protected open fun showErrorView(throwable: Throwable?) {
-        val loadingView: View? = findViewById<View>(R.id.loading_layout)
-        if (loadingView != null) {
-            loadingView.visibility = View.GONE
-        }
-        val errorView: View? = findViewById(R.id.error_layout)
-        if (errorView != null) {
-            errorView.visibility = View.VISIBLE
-            val errorIv: ImageView = findViewById(R.id.iv_error)
+        rootView!!.apply {
+            val loadingView: View? = findViewById(R.id.loading_layout)
+            if (loadingView != null) {
+                loadingView.visibility = View.GONE
+            }
+            val errorView: View? = findViewById(R.id.error_layout)
+            if (errorView != null) {
+                errorView.visibility = View.VISIBLE
+                val errorIv: ImageView = findViewById(R.id.iv_error)
 
-        }
-        val errorTv: TextView = findViewById<TextView>(R.id.tv_error)
-        if (throwable?.message!!.isNotEmpty()) {
+            }
+            val errorTv: TextView = findViewById(R.id.tv_error)
+            if (throwable?.message!!.isNotEmpty()) {
 
-            if (throwable is ResultException) {
-                errorTv.text = throwable.message
-            } else {
-                errorTv.text = throwable.message
+                if (throwable is ResultException) {
+                    errorTv.text = throwable.message
+                } else {
+                    errorTv.text = throwable.message
+                }
+            }
+            val operationTv: TextView? = findViewById(R.id.tv_operation)
+            if (operationTv != null) {
+
+
             }
         }
-        val operationTv: TextView? = findViewById(R.id.tv_operation)
-        if (operationTv != null) {
 
-
-        }
     }
 
 
