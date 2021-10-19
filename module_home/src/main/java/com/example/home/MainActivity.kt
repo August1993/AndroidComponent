@@ -1,31 +1,19 @@
 package com.example.home
 
-import android.graphics.Color
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.commonlib.base.BaseActivity
-import com.example.commonlib.dialog.CommonMessageDialog
-import com.example.commonlib.util.LogUtils
 import com.example.commonlib.util.RxUtils
 import com.example.home.databinding.HomeActivityMainBinding
-import com.example.home.model.bean.Data
 import com.example.home.ui.adapter.ProjectAdapter
 import com.example.home.viewmodel.HomeViewModel
 import com.example.mediator.router.HomeRouter
-import com.example.mediator.router.MainRouter
-import com.trello.lifecycle4.android.lifecycle.RxLifecycleAndroidLifecycle
-import com.trello.rxlifecycle4.RxLifecycle
 import io.reactivex.rxjava3.core.Single
-import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import java.util.concurrent.TimeUnit
-import java.util.function.Consumer
 
 
 @Route(path = HomeRouter.PAGE_MAIN)
@@ -49,6 +37,17 @@ class MainActivity : BaseActivity<HomeActivityMainBinding, HomeViewModel>() {
         adapter.addLoadStateListener {
 
         }
+
+        Single.just(1)
+            .delay(5, TimeUnit.SECONDS)
+            .compose(RxUtils::toSimpleSingle)
+            .subscribe({
+                Toast.makeText(this,"111",Toast.LENGTH_SHORT).show()
+            }, {
+
+
+            })
+
 
 //        CommonMessageDialog.Builder()
 //            .setTitleText("更新提示")

@@ -4,12 +4,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.commonlib.base.BaseFragment
-import com.example.commonlib.base.NoViewModel
 import com.example.home.R
 import com.example.home.databinding.HomeFragmentLayoutBinding
 import com.example.home.ui.adapter.ProjectAdapter
 import com.example.home.viewmodel.HomeViewModel
-import com.example.mediator.router.HomeRouter
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 

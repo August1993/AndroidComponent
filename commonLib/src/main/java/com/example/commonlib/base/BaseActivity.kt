@@ -1,7 +1,6 @@
 package com.example.commonlib.base
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.ViewStub
 import android.widget.ImageView
@@ -10,11 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewbinding.ViewBinding
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.commonlib.R
 import com.example.commonlib.http.model.ResultException

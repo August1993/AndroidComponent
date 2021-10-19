@@ -1,11 +1,8 @@
 package com.example.androidcomponent
 
 import android.app.Application
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.commonlib.base.BaseViewModel
 import com.example.commonlib.base.NoModel
-import com.example.commonlib.base.NoViewModel
 
 /**
  * <pre>

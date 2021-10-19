@@ -1,9 +1,8 @@
 package com.example.commonlib.event
 
-import io.reactivex.rxjava3.subjects.PublishSubject
-import com.example.commonlib.event.RxBusMessage
 import com.example.commonlib.event.RxBus
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.subjects.PublishSubject
 
 class RxBus {
     private val _bus = PublishSubject.create<Any>()

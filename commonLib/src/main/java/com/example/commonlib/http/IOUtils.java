@@ -3,9 +3,6 @@ package com.example.commonlib.http;
 import android.os.Build;
 import android.os.StatFs;
 import android.text.TextUtils;
-import android.widget.LinearLayout;
-
-
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

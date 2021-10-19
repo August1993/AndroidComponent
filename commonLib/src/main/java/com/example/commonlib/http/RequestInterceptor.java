@@ -2,7 +2,6 @@ package com.example.commonlib.http;
 
 import android.os.Build;
 
-
 import com.example.commonlib.util.DeviceUtils;
 
 import java.io.IOException;

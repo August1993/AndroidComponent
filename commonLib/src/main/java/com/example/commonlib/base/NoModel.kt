@@ -1,7 +1,5 @@
 package com.example.commonlib.base
 
-import com.zs.zs_jetpack.http.RetrofitFactory
-
 /**
  * <pre>
  *     author : wangzhiyi

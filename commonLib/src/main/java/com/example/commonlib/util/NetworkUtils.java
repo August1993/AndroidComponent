@@ -5,7 +5,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.TextUtils;
 
-
 import com.example.commonlib.base.BaseApplication;
 
 import java.net.NetworkInterface;

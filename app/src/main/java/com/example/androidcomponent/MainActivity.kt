@@ -4,15 +4,10 @@ package com.example.androidcomponent
 import android.graphics.Color
 import android.view.View
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.androidcomponent.databinding.ActivityMainBinding
 import com.example.commonlib.base.BaseActivity
-import com.example.commonlib.base.NoViewModel
-import com.example.mediator.router.HomeRouter
-import com.example.mediator.router.MainRouter
-import com.example.mediator.router.MineRouter
 import com.next.easynavigation.view.EasyNavigationBar
 import com.wuhenzhizao.titlebar.widget.CommonTitleBar
 
@@ -80,8 +75,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
             ARouter.getInstance().build("/home/fragment_home").navigation() as Fragment,
             ARouter.getInstance().build("/mine/fragment_mine").navigation() as Fragment
         )
-
-//        supportFragmentManager.beginTransaction().add(R.id.root,TestFragment()).commit()
 
         binding!!.easyNavigation
             .normalIconItems(normal)

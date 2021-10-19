@@ -10,7 +10,6 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
-import java.security.AccessController.getContext
 import java.util.concurrent.TimeUnit
 import java.util.logging.Level
 

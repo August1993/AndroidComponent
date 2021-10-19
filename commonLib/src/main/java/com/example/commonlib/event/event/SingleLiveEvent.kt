@@ -5,7 +5,6 @@ import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.example.commonlib.event.event.SingleLiveEvent
 import java.util.concurrent.atomic.AtomicBoolean
 
 /**

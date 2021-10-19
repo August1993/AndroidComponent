@@ -43,8 +43,6 @@ android {
 }
 
 dependencies {
-
-
     api project(path: ':commonLib:titlebar')
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -57,9 +55,11 @@ dependencies {
     api 'com.trello.rxlifecycle4:rxlifecycle:4.0.2'
     api 'com.trello.rxlifecycle4:rxlifecycle-android-lifecycle-kotlin:4.0.2'
     api 'com.github.Vincent7Wong:EasyNavigation:2.0.5'
+    api 'com.github.xuexiangjys:XUpdate:2.1.0'
+    api 'com.github.liujingxing.rxlife:rxlife-rxjava3:2.2.1'
+
 
     api Libs.core_ktx
-
     api Libs.arouter
     kapt Libs.kapt_arouter
     api Libs.androidX_appcompat

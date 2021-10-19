@@ -5,7 +5,6 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.text.format.Formatter;
 
-
 import com.example.commonlib.base.BaseApplication;
 
 import java.io.BufferedReader;

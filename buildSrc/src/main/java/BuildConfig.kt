@@ -20,8 +20,6 @@ private object LibVersions {
     const val okhttp_version = "4.9.0"
     const val glide_version = "4.11.0"
     const val paging_version = "3.0.1"
-
-
 }
 
 object Libs {

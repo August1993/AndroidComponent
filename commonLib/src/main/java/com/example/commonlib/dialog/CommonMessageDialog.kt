@@ -3,13 +3,10 @@ package com.example.commonlib.dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.os.Parcel
-import android.os.Parcelable
 import android.util.DisplayMetrics
 import android.view.Gravity
 import android.view.View
 import android.view.Window
-import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.example.commonlib.R

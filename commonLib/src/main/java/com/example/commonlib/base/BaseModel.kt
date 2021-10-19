@@ -5,7 +5,6 @@ import com.example.commonlib.http.model.HttpResult
 import com.example.commonlib.http.model.NetResult
 import com.example.commonlib.http.model.ResultException
 import com.zs.zs_jetpack.http.RetrofitFactory
-import com.zs.zs_jetpack.http.RetrofitManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.coroutineScope
 

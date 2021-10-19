@@ -3,9 +3,7 @@ package com.example.home.model.repo
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.home.model.bean.Data
-import com.example.home.model.bean.ProjectBean
 import com.example.home.model.service.RequestCenter
-import java.lang.Exception
 
 /**
  * <pre>
