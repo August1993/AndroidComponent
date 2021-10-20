@@ -8,6 +8,7 @@ import com.example.home.R
 import com.example.home.databinding.HomeFragmentLayoutBinding
 import com.example.home.ui.adapter.ProjectAdapter
 import com.example.home.viewmodel.HomeViewModel
+import com.wuhenzhizao.titlebar.widget.CommonTitleBar
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -23,6 +24,22 @@ import kotlinx.coroutines.launch
 class HomeFragment : BaseFragment<HomeFragmentLayoutBinding, HomeViewModel>() {
 
     val adapter by lazy { ProjectAdapter() }
+
+    override fun enableSimpleTitle(): Boolean = true
+
+    override fun bindCenterTitle(): String = "superTitle"
+
+    override fun bindLeftType(): Int = CommonTitleBar.TYPE_LEFT_TEXTVIEW
+
+    override fun bindLeftText(): String = "取消"
+
+    override fun bindLeftIcon(): Int = R.drawable.comm_titlebar_search_normal
+
+    override fun bindRightType(): Int = CommonTitleBar.TYPE_RIGHT_TEXTVIEW
+
+    override fun bindRightIcon(): Int = R.drawable.comm_titlebar_voice
+
+    override fun bindRightText(): String = "确定"
 
     override fun getLayoutId(): Int = R.layout.home_fragment_layout
 

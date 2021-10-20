@@ -49,7 +49,7 @@ class HomeViewModel(application: Application) : BaseViewModel<HomeModel>(applica
 
     fun getPagingData(): Flow<PagingData<Data>> {
         val requestCenter = buildService(RequestCenter::class.java)
-        return Pager(config = PagingConfig(10),
+        return Pager(config = PagingConfig(1),
             pagingSourceFactory = { ProjectPagingSource(requestCenter) })
             .flow
     }

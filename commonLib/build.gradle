@@ -53,10 +53,13 @@ dependencies {
     api 'io.reactivex.rxjava3:rxjava:3.1.2'
     api 'io.reactivex.rxjava3:rxandroid:3.0.0'
     api 'com.trello.rxlifecycle4:rxlifecycle:4.0.2'
+    api 'com.trello.rxlifecycle4:rxlifecycle-components:4.0.2'
     api 'com.trello.rxlifecycle4:rxlifecycle-android-lifecycle-kotlin:4.0.2'
     api 'com.github.Vincent7Wong:EasyNavigation:2.0.5'
     api 'com.github.xuexiangjys:XUpdate:2.1.0'
     api 'com.github.liujingxing.rxlife:rxlife-rxjava3:2.2.1'
+    api 'com.apkfuns.logutils:library:1.7.5'
+
 
 
     api Libs.core_ktx

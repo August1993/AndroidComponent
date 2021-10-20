@@ -9,7 +9,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -17,6 +16,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.example.commonlib.R
 import com.example.commonlib.http.model.ResultException
 import com.example.commonlib.util.LogUtils
+import com.trello.rxlifecycle4.components.support.RxFragment
 import com.wuhenzhizao.titlebar.widget.CommonTitleBar
 import java.lang.reflect.ParameterizedType
 
@@ -28,7 +28,7 @@ import java.lang.reflect.ParameterizedType
  *     desc   :BaseActivity
  * </pre>
  */
-abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : Fragment() {
+abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : RxFragment() {
 
     lateinit var binding: V
 
@@ -53,17 +53,14 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : Fragme
 
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initContentView()
-
         initViewModel()
         registerUiChangeObservable()
         initListener()
         initView()
     }
-
 
     abstract fun getLayoutId(): Int
 
@@ -115,7 +112,6 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : Fragme
     }
 
     /** init right end  */
-
     private fun initContentView() {
         if (enableSimpleTitle()) {
             val viewStub = rootView!!.findViewById<ViewStub>(R.id.simple_title)
@@ -180,7 +176,6 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : Fragme
         lifecycle.addObserver(mViewModel!!)
     }
 
-
     private fun registerUiChangeObservable() {
         mViewModel?.uiChangeLiveData?.showLoadingEvent?.observe(viewLifecycleOwner, {
             LogUtils.d("loading", "   hide loading 1111111 ")
@@ -191,11 +186,7 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : Fragme
             LogUtils.d("loading", "   hide loading 1111111 ${it?.exception?.msg}")
             showErrorView(it?.exception)
         })
-
-
-
     }
-
 
     open fun showLoadingView(loading: Boolean) {
         val loadingView: View? = rootView!!.findViewById(R.id.loading_layout)
@@ -207,7 +198,6 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : Fragme
             errorView.visibility = View.GONE
         }
     }
-
 
     /**
      * 展示错误页面
@@ -244,7 +234,6 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : Fragme
 
     }
 
-
     private fun <T : ViewModel> createViewModel(
         fragmentActivity: FragmentActivity,
         clazz: Class<T>
@@ -255,6 +244,5 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : Fragme
     fun initCustomViewModel(): VM? {
         return null
     }
-
 
 }

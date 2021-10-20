@@ -8,6 +8,8 @@
         android:id="@+id/common_title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:statusBarColor="@color/color_yellow"
+        app:titleBarColor="#0094ff"
         app:centerType="textView" />
 
 </FrameLayout>

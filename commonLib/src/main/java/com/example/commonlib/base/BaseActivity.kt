@@ -15,6 +15,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.example.commonlib.R
 import com.example.commonlib.http.model.ResultException
 import com.example.commonlib.util.LogUtils
+import com.trello.rxlifecycle4.components.support.RxAppCompatActivity
 import com.wuhenzhizao.titlebar.widget.CommonTitleBar
 import java.lang.reflect.ParameterizedType
 
@@ -26,7 +27,7 @@ import java.lang.reflect.ParameterizedType
  *     desc   :BaseActivity
  * </pre>
  */
-abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : AppCompatActivity() {
+abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : RxAppCompatActivity() {
 
     lateinit var binding: V
 
@@ -93,7 +94,6 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : AppCom
     }
 
     /** init right end  */
-
     private fun initContentView() {
         if (enableSimpleTitle()) {
             val viewStub = findViewById<ViewStub>(R.id.simple_title)
@@ -158,21 +158,16 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : AppCom
         lifecycle.addObserver(mViewModel!!)
     }
 
-
     private fun registerUiChangeObservable() {
         mViewModel?.uiChangeLiveData?.showLoadingEvent?.observe(this, {
-            LogUtils.d("loading", "   hide loading 1111111 ")
             showLoadingView(it!!)
         })
 
         mViewModel?.uiChangeLiveData?.showErrorEvent?.observe(this, {
-            LogUtils.d("loading", "   hide loading 1111111 ${it?.exception?.msg}")
-
             showErrorView(it?.exception)
         })
 
     }
-
 
     open fun showLoadingView(loading: Boolean) {
         val loadingView: View? = findViewById(R.id.loading_layout)
@@ -184,7 +179,6 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : AppCom
             errorView.visibility = View.GONE
         }
     }
-
 
     /**
      * 展示错误页面
@@ -218,7 +212,6 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : AppCom
         }
     }
 
-
     private fun <T : ViewModel> createViewModel(
         fragmentActivity: FragmentActivity,
         clazz: Class<T>
@@ -226,9 +219,7 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : AppCom
         return ViewModelProvider(fragmentActivity)[clazz]
     }
 
-    fun initCustomViewModel(): VM? {
-        return null
-    }
+    fun initCustomViewModel(): VM? = null
 
 
 }

@@ -22,7 +22,7 @@ class SecondActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ARouter.getInstance().inject(this);
+        ARouter.getInstance().inject(this)
         setContentView(R.layout.activity_second)
 
     }
