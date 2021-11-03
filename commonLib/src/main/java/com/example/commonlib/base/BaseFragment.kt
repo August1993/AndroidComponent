@@ -15,7 +15,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.commonlib.R
 import com.example.commonlib.http.model.ResultException
-import com.example.commonlib.util.LogUtils
 import com.trello.rxlifecycle4.components.support.RxFragment
 import com.wuhenzhizao.titlebar.widget.CommonTitleBar
 import java.lang.reflect.ParameterizedType
@@ -89,8 +88,8 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : RxFrag
         return 0
     }
 
-    open fun bindLeftClickListener(): View.OnClickListener {
-        return null!!
+    open fun bindLeftClickListener(): View.OnClickListener? {
+        return null
     }
     /** init left end */
 
@@ -107,8 +106,8 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : RxFrag
         return 0
     }
 
-    open fun bindRightClickListener(): View.OnClickListener {
-        return null!!
+    open fun bindRightClickListener(): View.OnClickListener? {
+        return null
     }
 
     /** init right end  */
@@ -140,16 +139,17 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : RxFrag
             commonTitleBar.setListener { v, action, _ ->
                 when (action) {
                     CommonTitleBar.ACTION_LEFT_TEXT, CommonTitleBar.ACTION_LEFT_BUTTON -> {
-                        bindLeftClickListener().apply {
+                        bindLeftClickListener()?.apply {
                             onClick(v)
                         }
                     }
                     CommonTitleBar.ACTION_RIGHT_TEXT, CommonTitleBar.ACTION_RIGHT_BUTTON -> {
-                        bindRightClickListener().apply {
+                        bindRightClickListener()?.apply {
                             onClick(v)
                         }
                     }
                     else -> {
+
                     }
                 }
             }
@@ -178,12 +178,10 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : RxFrag
 
     private fun registerUiChangeObservable() {
         mViewModel?.uiChangeLiveData?.showLoadingEvent?.observe(viewLifecycleOwner, {
-            LogUtils.d("loading", "   hide loading 1111111 ")
             showLoadingView(it!!)
         })
 
         mViewModel?.uiChangeLiveData?.showErrorEvent?.observe(viewLifecycleOwner, {
-            LogUtils.d("loading", "   hide loading 1111111 ${it?.exception?.msg}")
             showErrorView(it?.exception)
         })
     }
@@ -218,7 +216,6 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : RxFrag
             }
             val errorTv: TextView = findViewById(R.id.tv_error)
             if (throwable?.message!!.isNotEmpty()) {
-
                 if (throwable is ResultException) {
                     errorTv.text = throwable.message
                 } else {

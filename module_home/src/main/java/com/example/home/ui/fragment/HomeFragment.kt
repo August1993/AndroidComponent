@@ -1,5 +1,7 @@
 package com.example.home.ui.fragment
 
+import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -43,6 +45,10 @@ class HomeFragment : BaseFragment<HomeFragmentLayoutBinding, HomeViewModel>() {
 
     override fun getLayoutId(): Int = R.layout.home_fragment_layout
 
+    override fun bindLeftClickListener(): View.OnClickListener {
+        return View.OnClickListener { Toast.makeText(activity, "left", Toast.LENGTH_SHORT).show() }
+    }
+
     override fun initView() {
         mViewModel?.getBanner()
         binding.ry.layoutManager = LinearLayoutManager(activity)
@@ -55,6 +61,7 @@ class HomeFragment : BaseFragment<HomeFragmentLayoutBinding, HomeViewModel>() {
         adapter.addLoadStateListener {
 
         }
+
     }
 
 }

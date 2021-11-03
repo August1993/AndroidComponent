@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.1" />
         <entry key="app/src/main/res/layout/test_fragment_layout.xml" value="0.11515151515151516" />
+        <entry key="app/src/main/res/xml/provider_paths.xml" value="0.14402173913043478" />
         <entry key="commonLib/src/main/res/layout/dialog_message.xml" value="0.1" />
         <entry key="commonLib/src/main/res/layout/layout_error_view.xml" value="0.14479166666666668" />
         <entry key="commonLib/src/main/res/layout/layout_loading_view.xml" value="0.14479166666666668" />

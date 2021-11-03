@@ -3,6 +3,7 @@ package com.example.androidcomponent
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.commonlib.base.BaseApplication
 
+
 /**
  * <pre>
  *     author : wangzhiyi
@@ -17,5 +18,9 @@ class MyApplication : BaseApplication() {
         ARouter.openLog()
         ARouter.openDebug()
         ARouter.init(this)
+
+
     }
 }
+
+

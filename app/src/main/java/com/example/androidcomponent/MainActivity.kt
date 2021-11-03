@@ -9,7 +9,6 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.example.androidcomponent.databinding.ActivityMainBinding
 import com.example.commonlib.base.BaseActivity
 import com.next.easynavigation.view.EasyNavigationBar
-import com.wuhenzhizao.titlebar.widget.CommonTitleBar
 
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
