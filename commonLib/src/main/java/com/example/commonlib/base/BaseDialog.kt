@@ -56,7 +56,7 @@ abstract class BaseDialog<V : ViewDataBinding, VM : BaseViewModel<*>> : DialogFr
         initData()
     }
 
-    fun initDataBinding() {
+    private fun initDataBinding() {
         binding = DataBindingUtil.bind(viewContent!!)!!
         viewModel = initCustomViewModel()
         if (viewModel == null) {
