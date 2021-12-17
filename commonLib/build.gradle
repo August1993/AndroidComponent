@@ -2,7 +2,121 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'maven-publish'
+    id 'signing'
 }
+
+def GroupId = 'intbird.soft.gradle'
+def ArtifactId = 'maven-publish'
+def Version = '1.0.0'
+
+def userName = "admin"
+def passWord = "123456"
+
+afterEvaluate {
+    publishing {
+        publications {
+
+            release(MavenPublication) {
+                from components.release
+                groupId = GroupId
+                artifactId = ArtifactId
+                version = Version
+                pom {
+                    name = "SimpleLibPom"
+                    description = "Simple Lib Project Pom."
+                    url = 'http://intbird.net'
+                }
+            }
+            debug(MavenPublication) {
+                // Applies the component for the debug build variant.
+                from components.debug
+                groupId = GroupId
+                artifactId = ArtifactId
+                version = Version
+            }
+        }
+        repositories {
+            maven {
+                allowInsecureProtocol(true)
+                def releasesRepoUrl = "http://172.16.66.172:8081/repository/maven-releases/"
+                def snapshotsRepoUrl = "http://172.16.66.172:8081/repository/maven-snapshots/"
+                url = "http://localhost:8081/repository/kujiang1-hosted/"
+                credentials {
+                    username = userName
+                    password = passWord
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+//def GroupId = 'com.mao.testmavenpush'
+//def ArtifactId = 'maven-push-test'
+//def Version = '1.0.1'
+//def userName = "admin"
+//def passWord = "123456"
+//def releasesRepoUrl = "http://localhost:8081/repository/kujiang1-hosted/"
+//task generateSourcesJar(type:Jar){
+//    from android.sourceSets.main.java.srcDirs
+//    classifier "sources"
+//}
+//afterEvaluate {
+//    publishing {
+//        publications {
+//            release(MavenPublication) {
+//                groupId = GroupId//公司域名
+//                artifactId = ArtifactId//该aar包的名称
+//                version = Version//版本号
+//                // 必须有这个 否则不会上传AAR包
+//                afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
+//                // 多渠道，可以自行指定aar路径
+//                // def projectName = project.getName()
+//                // artifact "build/outputs/aar/${projectName}-release.aar"
+//                // 上传source，这样使用方可以看到方法注释
+//                artifact generateSourcesJar
+//
+//
+////                pom.withXml {
+////                    def dependenciesNode = asNode().appendNode("dependencies")
+////                    configurations.implementation.allDependencies.forEach() {
+////                        Dependency dependency ->
+////                            if (dependency.version != "unspecified" && dependency.name != "unspecified") {
+////                                def dependencyNode = dependenciesNode.appendNode('dependency')
+////                                dependencyNode.appendNode('groupId', dependency.group)
+////                                dependencyNode.appendNode('artifactId', dependency.name)
+////                                dependencyNode.appendNode('version', dependency.version)
+////                            }
+////                    }
+////                }
+//
+//                pom {
+//                    name = "SimpleLibPom"
+//                    description = "Simple Lib Project Pom."
+//                    url = 'http://intbird.net'
+//                }
+//
+//
+//            }
+//        }
+//        //仓库地址配置
+//        repositories {
+//            maven {
+//                allowInsecureProtocol = true
+//                url = releasesRepoUrl
+//                credentials {
+//                    username = userName
+//                    password = passWord
+//                }
+//            }
+//        }
+//    }
+//}
+
 kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.getName())
@@ -59,7 +173,6 @@ dependencies {
     api 'com.github.xuexiangjys:XUpdate:2.1.0'
     api 'com.github.liujingxing.rxlife:rxlife-rxjava3:2.2.1'
     api 'com.apkfuns.logutils:library:1.7.5'
-
 
 
     api Libs.core_ktx
