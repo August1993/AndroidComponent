@@ -6,7 +6,7 @@
         >
 
         <activity
-            android:name=".MineActivity"
+            android:name="com.androidapp.module.mine.ui.activity.MineActivity"
             android:exported="true">
         </activity>
 

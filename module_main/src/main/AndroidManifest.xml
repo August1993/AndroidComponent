@@ -5,7 +5,7 @@
     <application
     >
         <activity
-            android:name="com.example.module.main.MainActivity"
+            android:name="com.example.module.com.androidapp.module.main.MainActivity"
             android:exported="true">
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
