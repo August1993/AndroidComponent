@@ -12,12 +12,12 @@ import com.androidapp.mediator.base.IModuleInit
  *     desc   :
  * </pre>
  */
-class MineModule : IModuleInit {
+class AccountModule : IModuleInit {
     override fun onInitAhead(application: Application?) {
-        Log.d("IModuleInit", "onInitAhead: MineModule")
+        Log.d("IModuleInit", "onInitAhead: AccountModule")
     }
 
     override fun onInitLow(application: Application?) {
-        Log.d("IModuleInit", "onInitLow: MineModule")
+        Log.d("IModuleInit", "onInitLow: AccountModule")
     }
 }

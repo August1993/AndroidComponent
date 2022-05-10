@@ -15,9 +15,9 @@
             <option value="$PROJECT_DIR$/commonLib" />
             <option value="$PROJECT_DIR$/commonLib/titlebar" />
             <option value="$PROJECT_DIR$/mediator" />
+            <option value="$PROJECT_DIR$/module_account" />
             <option value="$PROJECT_DIR$/module_home" />
             <option value="$PROJECT_DIR$/module_main" />
-            <option value="$PROJECT_DIR$/module_mine" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
