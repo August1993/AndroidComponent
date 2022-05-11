@@ -8,10 +8,10 @@ package com.androidapp.mediator.router
  *     desc   :
  * </pre>
  */
-class MineRouter {
+class AccountRouter {
     companion object {
         private const val MODULE_NAME = "/mine"
-        const val PAGE_MAIN= "$MODULE_NAME/main"
-
+        const val PAGE_MAIN = "$MODULE_NAME/page_main"
+        const val SERVICE_INFO = "${MODULE_NAME}/service_userinfo"
     }
 }

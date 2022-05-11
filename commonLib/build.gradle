@@ -164,6 +164,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     api 'com.android.support:multidex:1.0.1'
     api('androidx.work:work-runtime-ktx:2.6.0') { exclude group: 'com.google.guava' }
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
 //    api 'com.trello.rxlifecycle4:rxlifecycle:4.0.2'
 //    api 'com.trello.rxlifecycle4:rxlifecycle-components:4.0.2'
 //    api 'com.trello.rxlifecycle4:rxlifecycle-android-lifecycle-kotlin:4.0.2'
@@ -172,6 +173,7 @@ dependencies {
     api 'com.apkfuns.logutils:library:1.7.5'
     api 'com.github.Vincent7Wong:EasyNavigation:2.0.5'
     implementation 'me.jessyan:autosize:1.2.1'
+
 
     api Libs.core_ktx
     api Libs.arouter

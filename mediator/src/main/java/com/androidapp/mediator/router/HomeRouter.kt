@@ -11,7 +11,7 @@ package com.androidapp.mediator.router
 class HomeRouter {
     companion object {
         private const val MODULE_NAME = "/home"
-        const val PAGE_MAIN= "$MODULE_NAME/main"
+        const val PAGE_MAIN= "$MODULE_NAME/page_main"
 
     }
 }
