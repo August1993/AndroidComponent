@@ -5,12 +5,15 @@ import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.androidapp.module.home.model.bean.Banner
 import com.example.commonlib.base.BaseFragment
 import com.example.home.R
 import com.example.home.databinding.HomeFragmentLayoutBinding
 import com.androidapp.module.home.ui.adapter.ProjectAdapter
 import com.androidapp.module.home.viewmodel.HomeViewModel
 import com.wuhenzhizao.titlebar.widget.CommonTitleBar
+import io.reactivex.Observer
+import io.reactivex.disposables.Disposable
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -50,18 +53,20 @@ class HomeFragment : BaseFragment<HomeFragmentLayoutBinding, HomeViewModel>() {
     }
 
     override fun initView() {
-        mViewModel?.getBanner()
-        binding.ry.layoutManager = LinearLayoutManager(activity)
-        binding.ry.adapter = adapter
-        lifecycleScope.launch {
-            mViewModel?.getPagingData()?.collect {
-                adapter.submitData(it)
+        binding.tv.setOnClickListener {
+            mViewModel!!.getBanner()
+        }
+
+    }
+
+    override fun initListener() {
+        super.initListener()
+        mViewModel?.bannerLiveData?.observe(this,object :androidx.lifecycle.Observer<List<Banner>>{
+            override fun onChanged(t: List<Banner>?) {
+                binding.tv.text=t.toString()
             }
-        }
-        adapter.addLoadStateListener {
 
-        }
-
+        })
     }
 
 }

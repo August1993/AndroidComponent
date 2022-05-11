@@ -9,13 +9,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.commonlib.R
 import com.example.commonlib.http.model.ResultException
-import com.trello.rxlifecycle4.components.support.RxFragment
+
 import com.wuhenzhizao.titlebar.widget.CommonTitleBar
 import java.lang.reflect.ParameterizedType
 
@@ -27,11 +28,11 @@ import java.lang.reflect.ParameterizedType
  *     desc   :BaseActivity
  * </pre>
  */
-abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : RxFragment() {
+abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : Fragment() {
 
     lateinit var binding: V
 
-    var mViewModel: VM? = null
+    var mViewModel: VM ?= null
 
     var rootView: View? = null
 
@@ -174,6 +175,7 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : RxFrag
             }
         }
         lifecycle.addObserver(mViewModel!!)
+
     }
 
     private fun registerUiChangeObservable() {

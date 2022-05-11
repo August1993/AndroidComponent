@@ -4,6 +4,8 @@ package com.androidapp.module.home.model.service
 import com.example.commonlib.http.model.HttpResult
 import com.androidapp.module.home.model.bean.Banner
 import com.androidapp.module.home.model.bean.ProjectBean
+import com.zhpan.idea.net.common.BasicResponse
+import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -13,9 +15,6 @@ import retrofit2.http.Path
  */
 interface RequestCenter {
     @GET("/banner/json")
-    suspend fun getBanner(): HttpResult<MutableList<Banner>>
-
-    @GET("/project/list/{pageNum}/json")
-    suspend fun getProjectList(@Path("pageNum") pageNum: Int): HttpResult<ProjectBean>
+    fun getBanner(): Single<MutableList<Banner>>
 
 }
