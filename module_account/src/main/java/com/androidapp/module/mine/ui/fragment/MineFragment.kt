@@ -19,7 +19,7 @@ import kotlin.random.Random
  *     desc   :
  * </pre>
  */
-@Route(path = "/mine/fragment_mine")
+@Route(path = AccountRouter.FRAGMENT_PAGE_MAIN)
 class MineFragment : BaseFragment<MineFragmentLayoutBinding, NoViewModel>() {
     val url = "https://s.kjcdn.com/app/android/huashengxiaoshuo1.1.17.apk"
     override fun getLayoutId(): Int = R.layout.mine_fragment_layout
@@ -46,7 +46,6 @@ class MineFragment : BaseFragment<MineFragmentLayoutBinding, NoViewModel>() {
 
         binding.download.setOnClickListener {
             val build = ARouter.getInstance().build(AccountRouter.SERVICE_INFO).navigation() as IUserInfoService
-
             val nextInt = Random.nextInt(100)
             build.userName="testUser_name $nextInt"
 

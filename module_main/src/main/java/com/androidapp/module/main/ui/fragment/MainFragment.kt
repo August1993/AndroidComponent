@@ -3,11 +3,10 @@ package com.androidapp.module.main.ui.fragment
 
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.alibaba.android.arouter.launcher.ARouter
 import com.androidapp.mediator.router.AccountRouter
+import com.androidapp.mediator.router.MainRouter
 import com.example.commonlib.base.BaseFragment
 import com.example.commonlib.base.NoViewModel
-import com.androidapp.mediator.router.HomeRouter
 import com.androidapp.mediator.service.IUserInfoService
 import com.example.module.R
 import com.example.module.databinding.MainFragmentLayoutBinding
@@ -21,10 +20,10 @@ import com.zhpan.idea.utils.ToastUtils
  *     desc   :
  * </pre>
  */
-@Route(path = "/main/fragment_main")
+@Route(path = MainRouter.FRAGMENT_PAGE_MAIN)
 class MainFragment:BaseFragment<MainFragmentLayoutBinding,NoViewModel>() {
 
-    @Autowired
+//    @Autowired
     lateinit  var userService: IUserInfoService
 
     override fun getLayoutId(): Int = R.layout.main_fragment_layout

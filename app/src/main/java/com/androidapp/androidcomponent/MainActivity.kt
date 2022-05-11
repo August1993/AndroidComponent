@@ -6,6 +6,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.launcher.ARouter
+import com.androidapp.mediator.router.AccountRouter
+import com.androidapp.mediator.router.HomeRouter
+import com.androidapp.mediator.router.MainRouter
 import com.example.androidcomponent.R
 import com.example.androidcomponent.databinding.ActivityMainBinding
 import com.example.commonlib.base.BaseActivity
@@ -39,7 +42,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     }
 
     override fun initView() {
-        var titles = arrayOf("首页", "统计","我的")
+        var titles = arrayOf("首页", "统计", "我的")
         var normal = intArrayOf(
             R.drawable.tab_bookshelf_normal,
             R.drawable.tab_home_normal,
@@ -52,9 +55,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         )
 
         var fragments = mutableListOf<Fragment>(
-            ARouter.getInstance().build("/main/fragment_main").navigation() as Fragment,
-            ARouter.getInstance().build("/home/fragment_home").navigation() as Fragment,
-            ARouter.getInstance().build("/mine/fragment_mine").navigation() as Fragment
+            ARouter.getInstance().build(MainRouter.FRAGMENT_PAGE_MAIN).navigation() as Fragment,
+            ARouter.getInstance().build(HomeRouter.FRAGMENT_PAGE_MAIN).navigation() as Fragment,
+            ARouter.getInstance().build(AccountRouter.FRAGMENT_PAGE_MAIN).navigation() as Fragment
         )
 
         binding!!.easyNavigation

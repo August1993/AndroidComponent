@@ -2,9 +2,8 @@ package com.androidapp.module.home.ui.fragment
 
 import android.view.View
 import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.androidapp.mediator.router.HomeRouter
 import com.androidapp.module.home.model.bean.Banner
 import com.example.commonlib.base.BaseFragment
 import com.example.home.R
@@ -14,12 +13,6 @@ import com.androidapp.module.home.viewmodel.HomeViewModel
 import com.example.commonlib.event.RxBus
 import com.wuhenzhizao.titlebar.widget.CommonTitleBar
 import com.zhpan.idea.utils.ToastUtils
-import io.reactivex.Observer
-import io.reactivex.Single
-import io.reactivex.disposables.Disposable
-import io.reactivex.functions.Consumer
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 /**
  * <pre>
@@ -29,7 +22,7 @@ import kotlinx.coroutines.launch
  *     desc   :
  * </pre>
  */
-@Route(path = "/home/fragment_home")
+@Route(path = HomeRouter.FRAGMENT_PAGE_MAIN)
 class HomeFragment : BaseFragment<HomeFragmentLayoutBinding, HomeViewModel>() {
 
     val adapter by lazy { ProjectAdapter() }
