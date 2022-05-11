@@ -16,6 +16,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.commonlib.R
 import com.example.commonlib.http.model.ResultException
+import com.rxjava.rxlife.RxConverter
+import com.rxjava.rxlife.RxLife
+import com.trello.rxlifecycle4.components.support.RxAppCompatActivity
+import com.trello.rxlifecycle4.components.support.RxFragment
+
 
 import com.wuhenzhizao.titlebar.widget.CommonTitleBar
 import java.lang.reflect.ParameterizedType
@@ -28,18 +33,21 @@ import java.lang.reflect.ParameterizedType
  *     desc   :BaseActivity
  * </pre>
  */
-abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : Fragment() {
+abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : RxFragment() {
 
     lateinit var binding: V
 
-    var mViewModel: VM ?= null
+    var mViewModel: VM? = null
 
     var rootView: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ARouter.getInstance().inject(this)
+    }
 
+    fun <T> bindLifecycle(): RxConverter<T> {
+        return RxLife.`as`(this)
     }
 
     override fun onCreateView(

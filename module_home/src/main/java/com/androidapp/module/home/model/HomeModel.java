@@ -5,6 +5,7 @@ import com.androidapp.module.home.model.service.RequestCenter;
 import com.example.commonlib.base.BaseModel;
 import com.zhpan.idea.net.common.IdeaApi;
 import com.zhpan.idea.net.common.IdeaApiProxy;
+import com.zhpan.idea.utils.RxUtils;
 
 import java.util.List;
 
@@ -22,8 +23,9 @@ import io.reactivex.Single;
 public class HomeModel extends BaseModel {
     public Single<List<Banner>> getBanner(){
 
-        RequestCenter apiService = IdeaApi.getApiService(RequestCenter.class, "https://www.wanandroid.com");
-       return apiService.getBanner() ;
+       return buildService(RequestCenter.class)
+               .getBanner()
+               .compose(RxUtils::toSimpleSingle);
 
     }
 

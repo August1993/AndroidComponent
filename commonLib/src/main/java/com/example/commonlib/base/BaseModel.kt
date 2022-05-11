@@ -1,12 +1,7 @@
 package com.example.commonlib.base
 
-import com.example.commonlib.http.model.DealException
-import com.example.commonlib.http.model.HttpResult
-import com.example.commonlib.http.model.NetResult
-import com.example.commonlib.http.model.ResultException
+import com.zhpan.idea.net.common.IdeaApi
 import com.zs.zs_jetpack.http.RetrofitFactory
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.coroutineScope
 
 /**
  * <pre>
@@ -18,8 +13,9 @@ import kotlinx.coroutines.coroutineScope
  */
 open class BaseModel {
 
-    fun <T> buildService(service: Class<T>): T {
+    fun <T> buildService(service: Class<T>): T{
 
-        return RetrofitFactory.factory().create(service)
+//        return RetrofitFactory.factory().create(service)
+        return IdeaApi.getApiService(service, "https://www.wanandroid.com")
     }
 }

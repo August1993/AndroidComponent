@@ -13,7 +13,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.commonlib.R
 import com.example.commonlib.http.model.ResultException
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
+import com.rxjava.rxlife.RxConverter
+import com.rxjava.rxlife.RxLife
+import com.trello.rxlifecycle4.components.support.RxAppCompatActivity
 import com.wuhenzhizao.titlebar.widget.CommonTitleBar
 import java.lang.reflect.ParameterizedType
 
@@ -218,6 +220,10 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : RxAppC
     }
 
     fun initCustomViewModel(): VM? = null
+
+    fun <T> bindLifecycle(): RxConverter<T> {
+        return RxLife.`as`(this)
+    }
 
 
 }

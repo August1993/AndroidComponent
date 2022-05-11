@@ -47,6 +47,11 @@ dependencies {
 //    api 'com.trello.rxlifecycle4:rxlifecycle:4.0.2'
 //    api 'com.trello.rxlifecycle4:rxlifecycle-components:4.0.2'
 //    api 'com.trello.rxlifecycle4:rxlifecycle-android-lifecycle-kotlin:4.0.2'
+
+    api 'com.trello.rxlifecycle4:rxlifecycle:4.0.2'
+    api 'com.trello.rxlifecycle4:rxlifecycle-components:4.0.2'
+    api 'com.trello.rxlifecycle4:rxlifecycle-android-lifecycle-kotlin:4.0.2'
+
     api 'com.github.Vincent7Wong:EasyNavigation:2.0.5'
 //    api 'com.github.liujingxing.rxlife:rxlife-rxjava3:2.2.1'
 
@@ -56,8 +61,8 @@ dependencies {
 //    api "com.squareup.retrofit2:converter-scalars:$rootProject.ext.retrofit2Version"
 //    api "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofit2Version"
 //    api "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofit2Version"
-    api "com.trello.rxlifecycle2:rxlifecycle:2.2.2"
-    api "com.trello.rxlifecycle2:rxlifecycle-components:2.2.2"
+//    api "com.trello.rxlifecycle2:rxlifecycle:2.2.2"
+//    api "com.trello.rxlifecycle2:rxlifecycle-components:2.2.2"
     api 'com.github.liujingxing.rxlife:rxlife-rxjava2:2.2.2'
 //    api 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
 

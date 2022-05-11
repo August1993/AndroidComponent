@@ -11,9 +11,13 @@ import com.example.home.R
 import com.example.home.databinding.HomeFragmentLayoutBinding
 import com.androidapp.module.home.ui.adapter.ProjectAdapter
 import com.androidapp.module.home.viewmodel.HomeViewModel
+import com.example.commonlib.event.RxBus
 import com.wuhenzhizao.titlebar.widget.CommonTitleBar
+import com.zhpan.idea.utils.ToastUtils
 import io.reactivex.Observer
+import io.reactivex.Single
 import io.reactivex.disposables.Disposable
+import io.reactivex.functions.Consumer
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -61,12 +65,25 @@ class HomeFragment : BaseFragment<HomeFragmentLayoutBinding, HomeViewModel>() {
 
     override fun initListener() {
         super.initListener()
-        mViewModel?.bannerLiveData?.observe(this,object :androidx.lifecycle.Observer<List<Banner>>{
-            override fun onChanged(t: List<Banner>?) {
-                binding.tv.text=t.toString()
+        mViewModel?.bannerLiveData?.observe(this,
+            object : androidx.lifecycle.Observer<List<Banner>> {
+                override fun onChanged(t: List<Banner>?) {
+                    binding.tv.text = t.toString()
+                }
+
+            })
+        RxBus.instance
+            ?.toObservable(123, String::class.java)
+            ?.subscribe {
+                ToastUtils.show("123消息接收成功 $it")
             }
 
-        })
+        RxBus.instance
+            ?.toObservable(456, String::class.java)
+            ?.subscribe({
+                ToastUtils.show("456消息接收成功 $it")
+            })
+
     }
 
 }
