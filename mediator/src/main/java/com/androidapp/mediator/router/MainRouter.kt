@@ -12,6 +12,7 @@ class MainRouter {
     companion object {
         private const val MODULE_NAME = "/main"
         const val PAGE_MAIN = "$MODULE_NAME/main"
+        const val FRAGMENT_PAGE_MAIN="${MODULE_NAME}/fragment_page_main"
 
     }
 }

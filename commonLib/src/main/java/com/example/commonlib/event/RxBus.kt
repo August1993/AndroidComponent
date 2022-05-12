@@ -70,17 +70,14 @@ class RxBus {
     }
 
     companion object {
-        @Volatile
-        private var sInstance: RxBus? = null
+
+
+        private val sInstance: RxBus by lazy {
+            RxBus()
+        }
+
         val instance: RxBus?
             get() {
-                if (sInstance == null) {
-                    synchronized(RxBus::class.java) {
-                        if (sInstance == null) {
-                            sInstance = RxBus()
-                        }
-                    }
-                }
                 return sInstance
             }
     }

@@ -1,12 +1,14 @@
 package com.example.commonlib.base
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import com.example.commonlib.event.event.SingleLiveEvent
 import com.example.commonlib.http.model.NetResult
+import com.rxjava.rxlife.RxConverter
+import com.rxjava.rxlife.RxLife
+import com.rxjava.rxlife.ScopeViewModel
 
 /**
  * <pre>
@@ -16,7 +18,7 @@ import com.example.commonlib.http.model.NetResult
  *     desc   :
  * </pre>
  */
-abstract class BaseViewModel<M : BaseModel> : AndroidViewModel, IBaseViewModel {
+abstract class BaseViewModel<M : BaseModel> : ScopeViewModel, IBaseViewModel {
 
     var uiChangeLiveData: UIChangeLiveData? = null
 
@@ -61,6 +63,11 @@ abstract class BaseViewModel<M : BaseModel> : AndroidViewModel, IBaseViewModel {
         uiChangeLiveData = UIChangeLiveData()
     }
 
+    fun <T>bindLifecycle(): RxConverter<T> {
+        return RxLife.asOnMain<T>(this)
+    }
+
+    @JvmField
     var mModel: M? = null
 
     class UIChangeLiveData : SingleLiveEvent<Any>() {

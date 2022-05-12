@@ -2,17 +2,17 @@ package com.androidapp.module.home.ui.fragment
 
 import android.view.View
 import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.androidapp.mediator.router.HomeRouter
+import com.androidapp.module.home.model.bean.Banner
 import com.example.commonlib.base.BaseFragment
 import com.example.home.R
 import com.example.home.databinding.HomeFragmentLayoutBinding
 import com.androidapp.module.home.ui.adapter.ProjectAdapter
 import com.androidapp.module.home.viewmodel.HomeViewModel
+import com.example.commonlib.event.RxBus
 import com.wuhenzhizao.titlebar.widget.CommonTitleBar
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
+import com.zhpan.idea.utils.ToastUtils
 
 /**
  * <pre>
@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
  *     desc   :
  * </pre>
  */
-@Route(path = "/home/fragment_home")
+@Route(path = HomeRouter.FRAGMENT_PAGE_MAIN)
 class HomeFragment : BaseFragment<HomeFragmentLayoutBinding, HomeViewModel>() {
 
     val adapter by lazy { ProjectAdapter() }
@@ -50,17 +50,32 @@ class HomeFragment : BaseFragment<HomeFragmentLayoutBinding, HomeViewModel>() {
     }
 
     override fun initView() {
-        mViewModel?.getBanner()
-        binding.ry.layoutManager = LinearLayoutManager(activity)
-        binding.ry.adapter = adapter
-        lifecycleScope.launch {
-            mViewModel?.getPagingData()?.collect {
-                adapter.submitData(it)
-            }
+        binding.tv.setOnClickListener {
+            mViewModel!!.getBanner()
         }
-        adapter.addLoadStateListener {
 
-        }
+    }
+
+    override fun initListener() {
+        super.initListener()
+        mViewModel?.bannerLiveData?.observe(this,
+            object : androidx.lifecycle.Observer<List<Banner>> {
+                override fun onChanged(t: List<Banner>?) {
+                    binding.tv.text = t.toString()
+                }
+
+            })
+        RxBus.instance
+            ?.toObservable(123, String::class.java)
+            ?.subscribe {
+                ToastUtils.show("123消息接收成功 $it")
+            }
+
+        RxBus.instance
+            ?.toObservable(456, String::class.java)
+            ?.subscribe({
+                ToastUtils.show("456消息接收成功 $it")
+            })
 
     }
 

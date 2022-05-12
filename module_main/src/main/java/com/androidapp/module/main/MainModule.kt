@@ -3,6 +3,7 @@ package com.androidapp.module.home
 import android.app.Application
 import android.util.Log
 import com.androidapp.mediator.base.IModuleInit
+import com.zhpan.idea.utils.Utils
 
 /**
  * <pre>
@@ -15,6 +16,7 @@ import com.androidapp.mediator.base.IModuleInit
 class MainModule : IModuleInit {
     override fun onInitAhead(application: Application?) {
         Log.d("IModuleInit", "onInitAhead: MainModule")
+        Utils.init(application)
     }
 
     override fun onInitLow(application: Application?) {

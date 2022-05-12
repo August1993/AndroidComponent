@@ -127,8 +127,8 @@ android {
     compileSdk 30
 
     defaultConfig {
-        minSdk 21
-        targetSdk 30
+        minSdk BuildConfig.minSdk
+        targetSdk BuildConfig.targetSdk
         versionCode 1
         versionName "1.0"
 
@@ -158,21 +158,21 @@ android {
 
 dependencies {
     api project(path: ':commonLib:titlebar')
+    api project(path: ':ideahttp')
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     api 'com.android.support:multidex:1.0.1'
-    implementation 'com.github.Vincent7Wong:EasyNavigation:2.0.5'
     api('androidx.work:work-runtime-ktx:2.6.0') { exclude group: 'com.google.guava' }
-    api 'io.reactivex.rxjava3:rxjava:3.1.2'
-    api 'io.reactivex.rxjava3:rxandroid:3.0.0'
-    api 'com.trello.rxlifecycle4:rxlifecycle:4.0.2'
-    api 'com.trello.rxlifecycle4:rxlifecycle-components:4.0.2'
-    api 'com.trello.rxlifecycle4:rxlifecycle-android-lifecycle-kotlin:4.0.2'
-    api 'com.github.Vincent7Wong:EasyNavigation:2.0.5'
-    api 'com.github.xuexiangjys:XUpdate:2.1.0'
-    api 'com.github.liujingxing.rxlife:rxlife-rxjava3:2.2.1'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
+//    api 'com.trello.rxlifecycle4:rxlifecycle:4.0.2'
+//    api 'com.trello.rxlifecycle4:rxlifecycle-components:4.0.2'
+//    api 'com.trello.rxlifecycle4:rxlifecycle-android-lifecycle-kotlin:4.0.2'
+//    api 'com.github.liujingxing.rxlife:rxlife-rxjava3:2.2.1'
+
     api 'com.apkfuns.logutils:library:1.7.5'
+    api 'com.github.Vincent7Wong:EasyNavigation:2.0.5'
+    implementation 'me.jessyan:autosize:1.2.1'
 
 
     api Libs.core_ktx
@@ -184,10 +184,12 @@ dependencies {
     api Libs.ktx_viewModel
     api Libs.ktx_liveData
     api Libs.ktx_lifeCycle
+
     api Libs.retrofit
     api Libs.scalars
     api Libs.gson_converter
     api Libs.okhttp
+
     api Libs.glide
     api Libs.glide_compiler
 }
